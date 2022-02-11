@@ -1,0 +1,101 @@
+---
+title: "penguins"
+author: "Becky"
+date: "11/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data
+
+Data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network.
+
+The palmerpenguins package contains two datasets. One is called `penguins`, and is a simplified version of the raw data. The second dataset is `penguins_raw`, and contains all the variables and original names as downloaded. 
+
+Both datasets contain data for 344 penguins. There are 3 different species of penguins in this dataset (`Adelie`, `Chinstrap` and `Gentoo`), collected from 3 islands in the Palmer Archipelago, Antarctica.
+
+![Meet the palmer penguins](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+
+```{r, message=FALSE, warning=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+
+```
+## Single trait distribution
+
+Distribution of flipper lengths in the three penguin species. 
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_density(aes(fill = species, x = flipper_length_mm), alpha = 0.7) +
+  xlab (" Flipper length (mm)") +
+  ylab ("Density")
+```
+Distribution of bill lengths in the three penguin species
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_histogram(aes(x = bill_length_mm)) +
+  facet_wrap(~ species) +
+  xlab ("Bill length (mm)") +
+  ylab ("Count (n)")
+
+```
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_density(aes(x = bill_length_mm, fill = island), alpha = 0.5) +
+  facet_wrap(~species, nrow = 3)
+
+```
+
+Distribution of bill depth in the three species
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_density(aes(fill = species, x = bill_depth_mm), alpha = 0.7) +
+  xlab (" Bill depth (mm)") +
+  ylab ("Density") 
+```
+
+## Relationship between multiple traits
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(mapping = aes(color = species), shape = 1) + 
+  geom_smooth() +
+  xlab (" Flipper length (mm)") +
+  ylab ("Body mass (g)")
+```
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+
+penguins
+penguins2<- penguins$species
+penguins3 <- substr(penguins2, 1, 1)
+penguins <- cbind(penguins, penguins3)
+
+ggplot(penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_smooth() +
+  xlab (" Flipper length (mm)") +
+  ylab ("Bill length (mm") +
+  geom_text(mapping = aes(label = penguins3))
+
+```
+
+## Sexual dimorphism
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+## demo
+ggplot(penguins) +
+  geom_boxplot(aes(x = sex, y = flipper_length_mm)) +
+  facet_wrap(~ species, nrow=1) +
+  ylab ("Flipper length (mm)")
+```

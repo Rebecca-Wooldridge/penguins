@@ -1,0 +1,22 @@
+name: "penguins"
+navbar:
+  title: "My website about penguins"
+  left:
+    - text: "Intro"
+      href: index.html
+    - text: "Data"
+      href: data.html
+    - text: "Single trait"
+      href: single_trait.html
+    - text: "Multiple trait"
+      href: multiple_trait.html
+    - text: "Sexual dimorphism"
+      href: sexual_dimorphism.html
+      
+output_dir: "."
+output:
+  html_document:
+    theme: cerulean
+    highlight: textmate
+    toc: true 
+    toc_float: true 

@@ -1,0 +1,44 @@
+---
+title: "Untitled"
+author: "Becky"
+date: "11/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+
+```
+
+
+## Relationship between multiple traits
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(mapping = aes(color = species), shape = 1) + 
+  geom_smooth() +
+  xlab (" Flipper length (mm)") +
+  ylab ("Body mass (g)")
+```
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+
+penguins
+penguins2<- penguins$species
+penguins3 <- substr(penguins2, 1, 1)
+penguins <- cbind(penguins, penguins3)
+
+ggplot(penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_smooth() +
+  xlab (" Flipper length (mm)") +
+  ylab ("Bill length (mm") +
+  geom_text(mapping = aes(label = penguins3))
+
+```

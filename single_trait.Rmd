@@ -1,0 +1,54 @@
+---
+title: "Untitled"
+author: "Becky"
+date: "11/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+
+```
+
+## Single trait distribution
+
+Distribution of flipper lengths in the three penguin species. 
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_density(aes(fill = species, x = flipper_length_mm), alpha = 0.7) +
+  xlab (" Flipper length (mm)") +
+  ylab ("Density")
+```
+Distribution of bill lengths in the three penguin species
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_histogram(aes(x = bill_length_mm)) +
+  facet_wrap(~ species) +
+  xlab ("Bill length (mm)") +
+  ylab ("Count (n)")
+
+```
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_density(aes(x = bill_length_mm, fill = island), alpha = 0.5) +
+  facet_wrap(~species, nrow = 3)
+
+```
+
+Distribution of bill depth in the three species
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+ggplot(penguins) +
+  geom_density(aes(fill = species, x = bill_depth_mm), alpha = 0.7) +
+  xlab (" Bill depth (mm)") +
+  ylab ("Density") 
+```

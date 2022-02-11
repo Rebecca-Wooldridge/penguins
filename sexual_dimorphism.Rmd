@@ -1,0 +1,27 @@
+---
+title: "sexual_dimorphism"
+author: "Becky"
+date: "11/02/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(palmerpenguins) #install.packages("palmerpenguins")
+library(tidyverse)
+
+```
+
+## Sexual dimorphism
+
+```{r, message=FALSE, warning=FALSE}
+## demo
+## demo
+ggplot(penguins) +
+  geom_boxplot(aes(x = sex, y = flipper_length_mm)) +
+  facet_wrap(~ species, nrow=1) +
+  ylab ("Flipper length (mm)")
+```
